@@ -8,7 +8,7 @@ public class BackgroundController : MonoBehaviour {
 	private GameObject MainCamera;
 
 	//スクロール速度
-	private float scrollSpeed = -0.30f;
+	private float scrollSpeed = 0.1f;
 	//背景終了位置
 	//private float deadline = -48;
 	//背景開始位置
@@ -16,18 +16,13 @@ public class BackgroundController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		MainCamera = GameObject.Find("MainCamera");
 	}
 
 	// Update is called once per frame
 	void Update () {
-		//背景を移動する
-		transform.Translate(0,this.scrollSpeed,0);
-
-		//画面外に出たら、画面に移動する
-		//if(transform.position.y < this.deadline) {
-		if (this.MainCamera.transform.position.y > this.gameObject.transform.position) {
-			transform.position = new Vector2 (0, this.MainCamera.transform.position.y);
+		if (this.MainCamera.transform.position.y - this.gameObject.transform.position.y >= 50.5f) {
+			transform.position = new Vector2 (0, this.MainCamera.transform.position.y + 57.5f);
 		}
 	}
 }
