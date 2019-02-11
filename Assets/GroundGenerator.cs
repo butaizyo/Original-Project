@@ -19,30 +19,18 @@ public class GroundGenerator : MonoBehaviour {
 	private float delta = 0;
 
 	//足場の生成間隔
-	private float span = 0.2f;
+	private float span = 2;
 
-	//足場の生成位置:Y座標
-	private float genPosY = 3;
-
-	//足場の生成位置オフセット
-	private float offsetY = 0.3f;
-
-	//足場の縦方向の間隔
-	private float spaceY = 2.9f;
-
-	//足場の生成位置オフセット
-	private float offsetX = 0.5f;
-	//キューブの横方向の間隔
-	private float spaceX = 0.4f;
-
-	//足場の生成個数の上限
-	private int maxFieldNum =1;
+	//足場の生成間隔
+	private float span1 = 1.0f;
 
 	//スタート地点
 	private int startPos = 0;
+	//ゴール地点
+	private int goalPos = 500;
 
-	//アイテムを出すy方向の範囲
-	private float posRange = 2.4f;
+	//アイテムを出すY方向の範囲
+	private float posRange = 10.4f;
 
 	public GameObject [] objects;
 
@@ -57,26 +45,24 @@ public class GroundGenerator : MonoBehaviour {
 	void Update ()
 	{
 
+		//カメラが移動したらアイテムを生成
+		if (this.MainCamera.transform.position.y + 10 > this.MainCamera.transform.position.y ) {
 
-		this.delta += Time.deltaTime;
+		//一定距離ごとにアイテムを生成
+		for (int j = -1; j <= 1; j++) {
+			//足場の種類を決める
+			int item = Random.Range (1, 15);
 
-		//span秒以上の時間が経過したか調べる
-		if (this.delta > this.span) {
-			this.delta = 0;
-
-			// ランダムな数字（０〜5）を取得
-			int n = Random.Range (0, 5);
-			for (int i = startPos; i < n; i += 3) {
-				// ゲームオブジェクトを生成
+			//60%field 配置:30%field1 配置:10%何もなし
+			if (1 <= item && item <= 6) {
+				//コインを生成
 				GameObject field = Instantiate (objects [0]) as GameObject;
-				GameObject field1 = Instantiate (objects [n]) as GameObject;
-				transform.position = new Vector3 (0, this.MainCamera.transform.position.y + 3);
-
-
-				//transform.position = new Vector3 (0, this.offsetY + i * this.spaceY);
-
-				//次の足場までの生成時間を決める
-				this.span = this.offsetX + this.spaceX * n;
+				this.Field1Prefab.transform.position = new Vector3 (0, posRange * j);
+			} else if (7 <= item && item <= 9) {
+				//車を生成
+				GameObject field = Instantiate (objects [1]) as GameObject;
+				this.Field2Prefab.transform.position = new Vector3 (0, posRange * j);
+				}
 			}
 		}
 	}

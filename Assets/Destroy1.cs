@@ -18,7 +18,7 @@ public class Destroy1 : MonoBehaviour {
 	void Update () {
 
 		//画面外に出たら破棄する
-		if (this.MainCamera.transform.position.y - this.gameObject.transform.position.y >= 50.5f) {
+		if (this.MainCamera.transform.position.y - this.gameObject.transform.position.y >= 30) {
 			Destroy (gameObject);	
 		}
 	}
