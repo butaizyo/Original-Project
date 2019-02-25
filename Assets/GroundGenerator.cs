@@ -83,7 +83,7 @@ public class GroundGenerator : MonoBehaviour {
 			}
 
 		
-			generatePos += 8;
+			generatePos += 8.5f;
 		}
 	}
 }
