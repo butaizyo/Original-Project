@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour {
 	private float rise = 0;
 
 	//昇る速度
-	private float speed = 1;
+	private float speed = 0.01f;
 
 	//ゲームオーバの判定
 	private bool isGameOver = false;
@@ -32,9 +32,9 @@ public class UIController : MonoBehaviour {
 	void Update () {
 		if (this.isGameOver == false) {
 			//上昇距離を更新する
-			//this.rise += this.speed;
+			this.rise += this.speed;
 			//上昇距離を表示する
-			//this.ScoreText.GetComponent<Text> ().text = "Score:  "  + rise.ToString ("F2") + "m";
+			this.ScoreText.GetComponent<Text> ().text = "Score:  "  + rise.ToString ("F2") + "m";
 		}
 		//ゲームオーバになった場合
 		if (this.isGameOver == true) {
@@ -45,10 +45,14 @@ public class UIController : MonoBehaviour {
 			}
 		}
 	}
+	public void GameStart () {
+		SceneManager.LoadScene ("START");
+	}
 
 	public void GameOver() {
 		//ゲームオーバになったときに、画面上にゲームオーバを表示する
 		this.gameOverText.GetComponent<Text>().text = "GameOver";
 		this.isGameOver = true;
 	}
+
 }

@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour {
 			//上昇距離を更新する
 			this.rise += this.speed;
 		
-			Debug.Log(this.ScoreText.GetComponent<Text> ().text ="Score: " + rise.ToString("F2")  + "m" );
+		//	Debug.Log(this.ScoreText.GetComponent<Text> ().text ="Score: " + rise.ToString("F2")  + "m" );
 			//上昇距離を表示する
 			//this.ScoreText.GetComponent<Text> ().text = "Score:  "  + rise.ToString ("F2") + "m";
 		}

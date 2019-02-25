@@ -7,13 +7,6 @@ public class BackgroundController : MonoBehaviour {
 	//Main
 	private GameObject MainCamera;
 
-	//スクロール速度
-	private float scrollSpeed = 0.1f;
-	//背景終了位置
-	//private float deadline = -48;
-	//背景開始位置
-	//private float StartLine = 5;
-
 	// Use this for initialization
 	void Start () {
 		MainCamera = GameObject.Find("MainCamera");
